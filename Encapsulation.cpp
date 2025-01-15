@@ -124,19 +124,23 @@ public:
     void useAmmo() {
         ammo--;
     }
-};
 
-class Game {
-public:
-    void enemyAttack(Player& player) {
-        if (player.getHealth() > 0 && player.getAmmo() > 0) {
-            player.takeDamage(10);
-            player.useAmmo();
+    void canAttack() {
+        if (getHealth() > 0 && getAmmo() > 0) {
+            takeDamage(10);
+            useAmmo();
             std::cout << "Player attacked and used ammo." << std::endl;
         }
         else {
             std::cout << "Player can't respond to attack." << std::endl;
         }
+    }
+};
+
+class Game {
+public:
+    void enemyAttack(Player& player) {
+        player.canAttack();
     }
 };
 
