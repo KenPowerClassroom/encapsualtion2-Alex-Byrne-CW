@@ -16,7 +16,14 @@ public:
     }
 
     void withdraw(double amount) {
-        balance -= amount;
+        if (getBalance() > 500) { 
+            balance -= amount;
+            std::cout << "Withdrawal successful. New balance: $" << getBalance() << std::endl; 
+        }
+        else {
+            std::cout << "Insufficient funds for withdrawal." << std::endl;
+        }
+       
     }
 };
 class HeatingSystem {
@@ -127,13 +134,8 @@ int main() {
     BankAccount account(1000.0);
 
     // Violation of Tell, Don't Ask
-    if (account.getBalance() > 500) {
         account.withdraw(500);
-        std::cout << "Withdrawal successful. New balance: $" << account.getBalance() << std::endl;
-    }
-    else {
-        std::cout << "Insufficient funds for withdrawal." << std::endl;
-    }
+   
     //////////////////////////////////////////////////////////////////
     // Exercise 2
     //////////////////////////////////////////////////////////////////
