@@ -47,6 +47,18 @@ public:
     double getCurrentTemperature() const {
         return currentTemperature;
     }
+
+
+    void regulate(HeatingSystem& hs, int targetTemp) {
+        if (getCurrentTemperature() < targetTemp) {
+            hs.turnOn();
+        }
+        else {
+            hs.turnOff();
+        }
+
+
+    }
 };
 #include <iostream>
 #include <string>
@@ -143,12 +155,7 @@ int main() {
     Thermostat thermostat(18.5);
     HeatingSystem heating;
 
-    if (thermostat.getCurrentTemperature() < 20.0) {
-        heating.turnOn();
-    }
-    else {
-        heating.turnOff();
-    }
+    thermostat.regulate(heating, 20); 
     
     //////////////////////////////////////////////////////////////////
     // Exercise 3
